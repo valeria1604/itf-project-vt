@@ -2,12 +2,17 @@ package com.company.M2;
 
 public class Task46 {
     public static void main(String[] args) {
+        System.out.println("encode([null]): " + encode(null));
+        System.out.println("encode([emty name]): " + encode(""));
         System.out.println("encode(\"Crab\"): " + encode("Crab"));
         System.out.println("decode(\"NOTFORYOUCr5bYESNOTFORYOU\"): " + decode("NOTFORYOUCr5bYESNOTFORYOU"));
         System.out.println("decode(\"NOTFORYOUNOTFORYOUYESNOTFORYOU\"): " + decode("NOTFORYOUNOTFORYOUYESNOTFORYOU"));
     }
 
     public static String encode(String name) {
+        if (name == null || name.isBlank()) {
+            return "";
+        }
         char[] chars = new char[name.length()];
         for (int i = 0; i < name.length(); i++) {
             if (name.charAt(i) == 'e') {
