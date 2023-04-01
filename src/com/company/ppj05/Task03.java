@@ -9,7 +9,8 @@ public class Task03 {
         int b = scanner.nextInt();
         int c = scanner.nextInt();
         System.out.println(a + " " + b + " " + c);
-        variant1(a, b, c);
+        // variant1(a, b, c);
+        variant2(a, b, c);
     }
 
     private static void variant1(int a, int b, int c) {
@@ -17,6 +18,26 @@ public class Task03 {
         int max = findMax(a, b, c);
         int mid = (a + b + c) - min - max;
         System.out.println(min + " " + mid + " " + max);
+    }
+
+    private static void variant2(int a, int b, int c) {
+        int tmp;
+        if (b < a) {
+            tmp = b;
+            b = a;
+            a = tmp;
+        }
+        if (c < b) {
+            tmp = c;
+            c = b;
+            b = tmp;
+        }
+        if (b < a) {
+            tmp = b;
+            b = a;
+            a = tmp;
+        }
+        System.out.println(a + " " + b + " " + c);
     }
 
     private static int findMin(int a, int b, int c) {
