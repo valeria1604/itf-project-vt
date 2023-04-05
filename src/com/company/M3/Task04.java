@@ -11,7 +11,8 @@ public class Task04 {
     }
 
     public static void createForms(String name, String surname, int age) {
-        System.out.println(name + " " + surname + " " + (age * 10) + " ");
-        System.out.println(name.toUpperCase() + "\n" + surname.toUpperCase() + "\n" + age * 10);
+        int newAge = age*10;
+        System.out.println(name + " " + surname + " " + newAge + " ");
+        System.out.println(name.toUpperCase() + "\n" + surname.toUpperCase() + "\n" + newAge);
     }
 }

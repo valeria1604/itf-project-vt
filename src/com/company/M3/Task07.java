@@ -12,11 +12,10 @@ public class Task07 {
 
     public static void fixNames(String[] names, String[] toReplace) {
         int j = 0;
-        for (int i = 0; i < 5; i++) {
-            if (i % 2 != 0) {
-                names[i] = toReplace[j];
-                j++;
-            }
+        for (int i = 1; i < names.length; ) {
+            names[i] = toReplace[j];
+            i = i + 2;
+            j++;
         }
     }
 }

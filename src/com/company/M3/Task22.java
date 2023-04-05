@@ -1,7 +1,5 @@
 package com.company.M3;
-
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Task22 {
@@ -26,15 +24,12 @@ public class Task22 {
             prizes[2] = "coin";
             size++;
         }
-
-        String[] result = new String[size];
-        int j = 0;
-        for (int i = 0; i < 3; i++) {
-            if (!Objects.equals(prizes[i], "")) {
-                result[j] = prizes[i];
-                j++;
+        for (int i = 0; i < size; i++) {
+            if(prizes[i].isEmpty()) {
+                prizes[i] = prizes[i + 1];
+                prizes[i+1]="";
             }
         }
-        return (Arrays.toString(result).replace("[", "").replace("]", ""));
+        return (Arrays.toString(prizes).replace("[" , "").replace("]", "").replace("," , ""));
     }
 }
