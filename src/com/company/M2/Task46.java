@@ -1,18 +1,19 @@
 package com.company.M2;
 
 public class Task46 {
-    public static final String NOTFORYOU = "NOTFORYOU";
-    public static final String YESNOTFORYOU = "YESNOTFORYOU";
+    private static final String NOT_FOR_YOU = "NOTFORYOU";
+    private static final String YES_NOT_FOR_YOU = "YESNOTFORYOU";
 
     public static void main(String[] args) {
-        System.out.println("encode([null]): " + encode(null));
-        System.out.println("encode([emty name]): " + encode(""));
-        System.out.println("encode(\"Crab\"): " + encode("Crab"));
-        System.out.println("decode(\"NOTFORYOUCr5bYESNOTFORYOU\"): " + decode("NOTFORYOUCr5bYESNOTFORYOU"));
-        System.out.println("decode(\"NOTFORYOUNOTFORYOUYESNOTFORYOU\"): " + decode("NOTFORYOUNOTFORYOUYESNOTFORYOU"));
+        Task46 task = new Task46();
+        System.out.println("encode([null]): " + task.encode(null));
+        System.out.println("encode([emty name]): " + task.encode(""));
+        System.out.println("encode(\"Crab\"): " + task.encode("Crab"));
+        System.out.println("decode(\"NOTFORYOUCr5bYESNOTFORYOU\"): " + task.decode("NOTFORYOUCr5bYESNOTFORYOU"));
+        System.out.println("decode(\"NOTFORYOUNOTFORYOUYESNOTFORYOU\"): " + task.decode("NOTFORYOUNOTFORYOUYESNOTFORYOU"));
     }
 
-    public static String encode(String name) {
+    public String encode(String name) {
         if (name == null || name.isBlank()) {
             return "";
         }
@@ -21,10 +22,10 @@ public class Task46 {
         name = name.replace('i', '3');
         name = name.replace('o', '4');
         name = name.replace('a', '5');
-        return String.join("", NOTFORYOU, name, YESNOTFORYOU);
+        return String.join("", NOT_FOR_YOU, name, YES_NOT_FOR_YOU);
     }
 
-    public static String decode(String name) {
+    public String decode(String name) {
         if (name == null || name.isBlank()) {
             return "";
         }
@@ -33,8 +34,8 @@ public class Task46 {
         name = name.replace('3', 'i');
         name = name.replace('4', 'o');
         name = name.replace('5', 'a');
-        name = name.replaceFirst(YESNOTFORYOU, "");
-        name = name.replaceFirst(NOTFORYOU, "");
+        name = name.replaceFirst(YES_NOT_FOR_YOU, "");
+        name = name.replaceFirst(NOT_FOR_YOU, "");
         return name;
     }
 }
