@@ -6,13 +6,13 @@ public class Task04 {
         Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
         String surname = scanner.nextLine();
-        int age = scanner.nextInt();
-        createForms(name, surname, age);
+        int earthAge = scanner.nextInt();
+        createForms(name, surname, earthAge);
     }
 
-    public static void createForms(String name, String surname, int age) {
-        int newAge = age*10;
-        System.out.println(name + " " + surname + " " + newAge + " ");
-        System.out.println(name.toUpperCase() + "\n" + surname.toUpperCase() + "\n" + newAge);
+    public static void createForms(String name, String surname, int earthAge) {
+        int moonAge = earthAge * 10;
+        System.out.println(name + " " + surname + " " + moonAge + " ");
+        System.out.println(name.toUpperCase() + "\n" + surname.toUpperCase() + "\n" + moonAge);
     }
 }

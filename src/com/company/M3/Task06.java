@@ -13,8 +13,7 @@ public class Task06 {
         System.out.println(Arrays.toString(createAgeArray(age1, age2, age3, age4)));
     }
 
-    public static int[] createAgeArray(int age1, int age2, int age3, int age4){
+    public static int[] createAgeArray(int age1, int age2, int age3, int age4) {
         return new int[]{age1, age2, age3, age4};
     }
-
 }
