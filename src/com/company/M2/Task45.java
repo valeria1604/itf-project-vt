@@ -12,18 +12,9 @@ public class Task45 {
         if (name == null || name.isBlank()) {
             return "";
         }
-        int size;
-        if (name.length() % 2 == 0) {
-            size = name.length() / 2;
-        } else {
-            size = (name.length() - 1) / 2;
-        }
-        char[] chars = new char[size];
-        int poz = 0;
-        for (int i = 0; i < size; i++) {
-            chars[poz] = name.charAt(i);
-            poz++;
-        }
-        return String.valueOf(chars);
+        int startIndex = 0;
+        int lastIndex = name.length() / 2;
+        name = name.substring(startIndex, lastIndex);
+        return name;
     }
 }

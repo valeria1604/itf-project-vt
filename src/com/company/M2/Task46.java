@@ -1,6 +1,9 @@
 package com.company.M2;
 
 public class Task46 {
+    public static String firstWord = "NOTFORYOU";
+    public static String lastWord = "YESNOTFORYOU";
+
     public static void main(String[] args) {
         System.out.println("encode([null]): " + encode(null));
         System.out.println("encode([emty name]): " + encode(""));
@@ -13,52 +16,25 @@ public class Task46 {
         if (name == null || name.isBlank()) {
             return "";
         }
-        char[] chars = new char[name.length()];
-        for (int i = 0; i < name.length(); i++) {
-            if (name.charAt(i) == 'e') {
-                chars[i] = '1';
-            }
-            if (name.charAt(i) == 'u') {
-                chars[i] = '2';
-            }
-            if (name.charAt(i) == 'i') {
-                chars[i] = '3';
-            }
-            if (name.charAt(i) == 'o') {
-                chars[i] = '4';
-            }
-            if (name.charAt(i) == 'a') {
-                chars[i] = '5';
-            } else {
-                chars[i] = name.charAt(i);
-            }
-        }
-        return "NOTFORYOU" + String.valueOf(chars) + "YESNOTFORYOU";
+        name = name.replace('e', '1');
+        name = name.replace('u', '2');
+        name = name.replace('i', '3');
+        name = name.replace('o', '4');
+        name = name.replace('a', '5');
+        return String.join("", firstWord, name, lastWord);
     }
 
     public static String decode(String name) {
-        char[] chars = new char[name.length() - 21];
-        int poz = 0;
-        for (int i = 9; i < name.length() - 12; i++) {
-            if (name.charAt(i) == '1') {
-                chars[poz] = 'e';
-            }
-            if (name.charAt(i) == '2') {
-                chars[poz] = 'u';
-            }
-            if (name.charAt(i) == '3') {
-                chars[poz] = 'i';
-            }
-            if (name.charAt(i) == '4') {
-                chars[poz] = 'o';
-            }
-            if (name.charAt(i) == '5') {
-                chars[poz] = 'a';
-            } else {
-                chars[poz] = name.charAt(i);
-            }
-            poz++;
+        if (name == null || name.isBlank()) {
+            return "";
         }
-        return String.valueOf(chars);
+        name = name.replace('1', 'e');
+        name = name.replace('2', 'u');
+        name = name.replace('3', 'i');
+        name = name.replace('4', 'o');
+        name = name.replace('5', 'a');
+        name = name.replaceFirst(lastWord, "");
+        name = name.replaceFirst(firstWord, "");
+        return name;
     }
 }

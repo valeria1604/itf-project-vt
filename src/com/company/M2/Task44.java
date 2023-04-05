@@ -12,20 +12,6 @@ public class Task44 {
         if (name == null || name.isBlank()) {
             return "";
         }
-        int amount = 0;
-        for (int i = 0; i < name.length(); i++) {
-            if (Character.isLetter(name.charAt(i))) {
-                amount++;
-            }
-        }
-        char[] chars = new char[amount];
-        int poz = 0;
-        for (int i = 0; i < name.length(); i++) {
-            if (Character.isLetter(name.charAt(i))) {
-                chars[poz] = name.charAt(i);
-                poz++;
-            }
-        }
-        return "CLEAN" + String.valueOf(chars) + "CLEAN";
+        return String.join("", "CLEAN", name.trim(), "CLEAN");
     }
 }
