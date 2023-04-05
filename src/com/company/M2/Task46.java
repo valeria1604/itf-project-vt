@@ -1,8 +1,8 @@
 package com.company.M2;
 
 public class Task46 {
-    public static String firstWord = "NOTFORYOU";
-    public static String lastWord = "YESNOTFORYOU";
+    public static final String NOTFORYOU = "NOTFORYOU";
+    public static final String YESNOTFORYOU = "YESNOTFORYOU";
 
     public static void main(String[] args) {
         System.out.println("encode([null]): " + encode(null));
@@ -21,7 +21,7 @@ public class Task46 {
         name = name.replace('i', '3');
         name = name.replace('o', '4');
         name = name.replace('a', '5');
-        return String.join("", firstWord, name, lastWord);
+        return String.join("", NOTFORYOU, name, YESNOTFORYOU);
     }
 
     public static String decode(String name) {
@@ -33,8 +33,8 @@ public class Task46 {
         name = name.replace('3', 'i');
         name = name.replace('4', 'o');
         name = name.replace('5', 'a');
-        name = name.replaceFirst(lastWord, "");
-        name = name.replaceFirst(firstWord, "");
+        name = name.replaceFirst(YESNOTFORYOU, "");
+        name = name.replaceFirst(NOTFORYOU, "");
         return name;
     }
 }
