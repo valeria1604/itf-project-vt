@@ -8,7 +8,7 @@ public class Tasks123 {
         //task2();
         //task2_variant2();
         //task3();
-        //task3_example2();
+        task3_example2();
     }
 
     private static void task1() {
@@ -45,10 +45,19 @@ public class Tasks123 {
 
     private static void task3_example2() {
         int answer;
+        System.out.println("Do-While");
+        Scanner scan = new Scanner(System.in);
         do {
             System.out.println("What is 2+2?");
-            Scanner scan = new Scanner(System.in);
             answer = scan.nextInt();
         } while (answer != 4);
+
+        System.out.println("While");
+        System.out.println("What is 2+2?");
+        answer = scan.nextInt(); //for while-do 57, 60 are duplicated, in do-while it is used one time
+        while(answer!=4){
+            System.out.println("What is 2+2?");
+            answer = scan.nextInt();
+        }
     }
 }
