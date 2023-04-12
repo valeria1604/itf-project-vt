@@ -18,19 +18,19 @@ public class Tasks123 {
     private static void task2() {
         int[] array = new int[]{7, 6, 8, 4, 2, 9, 10};
         System.out.println(Arrays.toString(array));
-        int placeMin = 0;
-        int placeMax = 0;
+        int indexMin = 0;
+        int indexMax = 0;
         int min = getMin(array);
         int max = getMax(array);
         for (int i = 0; i < array.length; i++) {
             if (array[i] == min) {
-                placeMin = i;
+                indexMin = i;
             } else if (array[i] == max) {
-                placeMax = i;
+                indexMax = i;
             }
         }
-        array[placeMin] = max;
-        array[placeMax] = min;
+        array[indexMin] = max;
+        array[indexMax] = min;
         System.out.println(Arrays.toString(array));
     }
 
@@ -39,8 +39,8 @@ public class Tasks123 {
         System.out.println(Arrays.toString(array));
         int max = getMax(array);
         for (int rows = max; rows > 0; rows--) {
-            for (int columns = 0; columns < array.length; columns++) {
-                if (array[columns] < rows) {
+            for (int elementValue : array) {
+                if (elementValue < rows) {
                     System.out.print(" ");
                 } else {
                     System.out.print("*");
@@ -52,9 +52,9 @@ public class Tasks123 {
 
     private static int getMin(int[] array) {
         int min = array[0];
-        for (int i = 1; i < array.length; i++) {
-            if (min > array[i]) {
-                min = array[i];
+        for (int element : array) {
+            if (min > element) {
+                min = element;
             }
         }
         return min;
@@ -62,9 +62,9 @@ public class Tasks123 {
 
     private static int getMax(int[] array) {
         int max = array[0];
-        for (int i = 1; i < array.length; i++) {
-            if (max < array[i]) {
-                max = array[i];
+        for (int element : array) {
+            if (max < element) {
+                max = element;
             }
         }
         return max;

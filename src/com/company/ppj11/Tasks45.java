@@ -4,13 +4,14 @@ import java.util.Arrays;
 
 public class Tasks45 {
     public static void main(String[] args) {
-        task4();
-        task5();
+        //task4();
+        int[] array = {2, 3, 4, 3, 2, 6, 3, 6, 8, 2, 9};
+        task5(array);
     }
 
     private static void task4() {
         int[] array = {1, 2, 3, 4, 5};
-        int tmp;
+        int tmp = 0;
         for (int i = 0; i < array.length - 1; i++) {
             tmp = array[i];
             array[i] = array[i + 1];
@@ -19,22 +20,23 @@ public class Tasks45 {
         System.out.println(Arrays.toString(array));
     }
 
-    private static void task5() {
-        int[] array = {2, 3, 4, 3, 2, 6, 3, 6, 8, 2, 9};
-        int count = 0;
-        boolean isWritten;
+    private static void task5(int[] array) {
+        if (array.length == 0) {
+            System.out.println("Empty array");
+        }
+        int count = 1;
         for (int j = 0; j < array.length; j++) {
-            isWritten = false;
-            for (int i = 0; i < array.length; i++) {
-                if (array[j] == array[i] && !isWritten && array[i] != 0) {
-                    isWritten = true;
-                    System.out.print(array[i] + " ");
+            for (int i = j + 1; i < array.length; i++) {
+                if (array[j] == array[i]) {
+                    break;
+                }
+                if (i == array.length - 1) {
+                    System.out.print(array[j] + " ");
                     count++;
-                } else if (array[j] == array[i] && isWritten) {
-                    array[i] = 0;
                 }
             }
         }
+        System.out.print(array[array.length - 1] + "");
         System.out.println();
         System.out.println("There were " + count + " different numbers");
     }
