@@ -5,7 +5,7 @@ public class Tasks {
         //task1();
         //task2();
         //task3();
-        task4();
+        //task4();
     }
 
     private static void task1() {
