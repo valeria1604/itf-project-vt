@@ -16,7 +16,7 @@ public class Printer {
     }
 
     public String print(String firstPart, int secondPart) {
-        return firstPart + " and " + String.valueOf(secondPart);
+        return firstPart + " and " + secondPart;
     }
 
     public String print(String[] message) {

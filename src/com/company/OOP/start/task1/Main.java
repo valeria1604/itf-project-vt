@@ -7,7 +7,6 @@ public class Main {
         System.out.println(printer.print(4));
         System.out.println(printer.print(4.7));
         System.out.println(printer.print("string", 4));
-        String[] array = new String[]{"a", "b", "c"};
-        System.out.println(printer.print(array));
+        System.out.println(printer.print(new String[]{"a", "b", "c"}));
     }
 }
