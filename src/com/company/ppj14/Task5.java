@@ -4,7 +4,6 @@ public class Task5 {
     public static void main(String[] args) {
         int rows = 10;
         int columns = rows;
-        int[][] array = new int[rows][columns];
         printRow(1, 1, columns);
     }
 
@@ -19,13 +18,13 @@ public class Task5 {
         System.out.println();
     }
 
-    private static void printCol(int max, int col, int size) {
+    private static void printCol(int row, int col, int size) {
         if (col > size / 2) {
             return;
         }
-        int value = col < max ? col : max;
+        int value = col < row ? col : row;
         System.out.print(value + " ");
-        printCol(max, col + 1, size);
+        printCol(row, col + 1, size);
         System.out.print(value + " ");
     }
 }
