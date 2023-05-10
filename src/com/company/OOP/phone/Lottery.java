@@ -3,10 +3,10 @@ package com.company.OOP.phone;
 import java.util.Random;
 
 public class Lottery {
+    private final Random random = new Random();
+    private final ColorSupplier colorSupplier = new ColorSupplier();
+
     public Ball getRandomBall(){
-        Ball newBall = new Ball();
-        newBall.setColor(new ColorSupplier().getRandomColor());
-        newBall.setNumber(new Random().nextInt(100));
-        return newBall;
+        return new Ball(colorSupplier.getRandomColor(), random.nextInt(100));
     }
 }
