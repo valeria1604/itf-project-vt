@@ -41,8 +41,9 @@ public class Main {
     }
 
     private static void task7() {
+        System.out.println(GameSaver.key);
         for(int i = 0; i < 10; i++) {
-            new GameSaver();
+            System.out.println(new GameSaver(i));
         }
     }
 
