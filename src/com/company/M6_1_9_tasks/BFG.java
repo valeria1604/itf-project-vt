@@ -12,14 +12,11 @@ public class BFG {
     }
 
     public BFG(int ammo, int damage) {
-        this(1000, 50, "BFG");
-        this.ammo = ammo;
-        this.damage = damage;
+        this(ammo, damage, "BFG");
     }
 
     public BFG(int ammo) {
-        this(1000, 50, "BFG");
-        this.ammo = ammo;
+        this(ammo, 50, "BFG");
     }
 
     public BFG() {
