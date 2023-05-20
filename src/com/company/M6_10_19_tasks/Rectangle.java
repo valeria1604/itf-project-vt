@@ -5,11 +5,11 @@ public class Rectangle {
     int secondSide;
 
     public Rectangle(int a, int b) {
-        this.firstSide = a;
-        this.secondSide = b;
+        firstSide = a;
+        secondSide = b;
     }
 
     public boolean canPlaceInto(Rectangle anotherRect) {
-        return (this.firstSide <= anotherRect.firstSide && this.secondSide <= anotherRect.secondSide);
+        return (firstSide <= anotherRect.firstSide && secondSide <= anotherRect.secondSide);
     }
 }

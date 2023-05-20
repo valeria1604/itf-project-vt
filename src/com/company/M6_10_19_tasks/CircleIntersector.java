@@ -19,10 +19,10 @@ public class CircleIntersector {
 
     @Override
     public String toString() {
-        double distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-        if (distance <= r1 + r2) {
-            return "intersects";
-        }
-        return "not intersects";
+        return getDistance() <= r1 + r2 ? "intersects" : "not intersects";
+    }
+
+    private double getDistance() {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 }

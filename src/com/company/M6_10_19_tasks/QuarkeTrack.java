@@ -18,6 +18,12 @@ public class QuarkeTrack {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
         QuarkeTrack otherObject = (QuarkeTrack) obj;
         return this.sum == otherObject.sum;
     }

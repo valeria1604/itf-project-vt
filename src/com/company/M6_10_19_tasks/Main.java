@@ -7,7 +7,7 @@ public class Main {
         //task10();
         //task11();
         //task12();
-        //task13();
+        task13();
         //task14();
         //task15();
         //tasks16_17_18_19();
@@ -18,8 +18,8 @@ public class Main {
     }
 
     private static void task11() {
-        int[] coords = {2, 2, 12, 12};
-        System.out.println(new RectangleArea(coords).getArea());
+        int[] coordinates = {2, 2, 12, 12};
+        System.out.println(new RectangleArea(coordinates).getArea());
     }
 
     private static void task12() {
