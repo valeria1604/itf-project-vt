@@ -1,11 +1,11 @@
 package com.company.M9;
 
-public class MyArrayList<T> {
+public class MyQueue<T> {
     public static final int START_SIZE = 2;
-    private T[] elements;
     private int size;
+    private T[] elements;
 
-    public MyArrayList() {
+    public MyQueue() {
         elements = (T[]) new Object[START_SIZE];
     }
 
@@ -24,32 +24,20 @@ public class MyArrayList<T> {
         }
     }
 
-    public void remove(int index) {
-        if (index < 0 || index > size - 1) {
-            throw new IndexOutOfBoundsException("Index out of bounds of size of list");
-        }
-
-        System.arraycopy(elements, index + 1, elements, index, size - 1 - index);
-        elements[size - 1] = null;
-        size--;
-    }
-
-    public void clear() {
-        T[] newArrayOfElements = (T[]) new Object[START_SIZE];
-        elements = newArrayOfElements;
-        size = 0;
-    }
-
     public int size() {
         return size;
     }
 
-    public T get(int index) {
-        if (index < 0 || index > size - 1) {
-            throw new IndexOutOfBoundsException("Index out of bounds of size of list");
-        }
+    public T peek(){
+        return elements[0];
+    }
 
-        return elements[index];
+    public void poll(){
+        if (size == 0) {
+            throw new IndexOutOfBoundsException("Empty queue");
+        }
+        System.arraycopy(elements,  1, elements, 0, size - 1);
+        size--;
     }
 
     @Override

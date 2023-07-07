@@ -1,43 +1,17 @@
 package com.company.M9;
 
-public class MyLinkedList<Type> {
+public class MyLinkedList<T> {
     public Node headNode;
     public Node tailNode;
     private int size;
 
-    class Node {
-        public Type value;
-        public Node preNode;
-        public Node nextNode;
-
-        public Node() {
-        }
-
-        public Node(Type value, Node preNode, Node nextNode) {
-            this.value = value;
-            this.preNode = preNode;
-            this.nextNode = nextNode;
-        }
-    }
-
-    public MyLinkedList() {
-        size = 0;
-
-        headNode = new Node();
-        headNode.value = null;
-        headNode.preNode = null;
-        headNode.nextNode = null;
-
-        tailNode = headNode;
-    }
-
-    public void add(Object newValue) {
+    public void add(T newValue) {
         if (size == 0) {
-            Node newNode = new Node((Type) newValue, null, null);
+            Node newNode = new Node(newValue, null, null);
             headNode = newNode;
-            tailNode = newNode;
+            tailNode = headNode;
         } else {
-            Node newNode = new Node((Type) newValue, tailNode, null);
+            Node newNode = new Node(newValue, tailNode, null);
             tailNode.nextNode = newNode;
             tailNode = newNode;
         }
@@ -49,27 +23,31 @@ public class MyLinkedList<Type> {
             throw new IndexOutOfBoundsException("Index out of bounds of size of list");
         }
 
-        Node tmpNode = headNode.nextNode;
-        for (int i = 0; i < index - 1; i++) {
+        if (index == 0) {
+            headNode = headNode.nextNode;
+            headNode.preNode = null;
+            size--;
+            return;
+        }
+
+        if (index == size - 1) {
+            tailNode = tailNode.preNode;
+            tailNode.nextNode = null;
+            size--;
+            return;
+        }
+
+        size--;
+        Node tmpNode = headNode;
+        for (int i = 0; i < index ; i++) {
             tmpNode = tmpNode.nextNode;
         }
 
         Node prevTempNode = tmpNode.preNode;
         Node nextTempNode = tmpNode.nextNode;
 
-        if (prevTempNode != null) {
-            prevTempNode.nextNode = nextTempNode;
-        } else {
-            headNode = nextTempNode;
-        }
-
-        if (nextTempNode != null) {
-            nextTempNode.preNode = prevTempNode;
-        }
-        if (tmpNode == tailNode) {
-            tailNode = prevTempNode;
-        }
-        size--;
+        prevTempNode.nextNode = nextTempNode;
+        nextTempNode.preNode = prevTempNode;
     }
 
     public void clear() {
@@ -82,7 +60,7 @@ public class MyLinkedList<Type> {
         return size;
     }
 
-    public Type get(int index) {
+    public T get(int index) {
         if (index < 0 || index > size - 1) {
             throw new IndexOutOfBoundsException("Index out of bounds of size of list");
         }
@@ -97,11 +75,28 @@ public class MyLinkedList<Type> {
         return null;
     }
 
-    public void print() {
+//TODO for -> while
+    @Override
+    public String toString() {
+        String result = "[";
         Node tmpNode = headNode;
         for (int i = 0; i < size; i++) {
-            System.out.println(tmpNode.value);
+            result += "{" + tmpNode.value + "}, ";
             tmpNode = tmpNode.nextNode;
+        }
+        result += "] \nSize: " + size;
+        return result;
+    }
+
+    private class Node {
+        private T value;
+        private Node preNode;
+        private Node nextNode;
+
+        private Node(T value, Node preNode, Node nextNode) {
+            this.value = value;
+            this.preNode = preNode;
+            this.nextNode = nextNode;
         }
     }
 }
