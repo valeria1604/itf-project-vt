@@ -5,6 +5,55 @@ public class Main {
         //testArrayList();
         //testLinkedList();
         //testQueue();
+        //testStack();
+        testHashMap();
+
+    }
+
+    private static void testHashMap() {
+        Cat cat1 = new Cat("Ab", 2);
+        Cat cat2 = new Cat("Bc", 3);
+        Cat cat3 = new Cat("Cd", 4);
+        Cat cat4 = new Cat("De", 5);
+
+        MyHashMap<Cat> cats = new MyHashMap<>();
+        cats.put(1, cat1);
+        cats.put(2, cat2);
+        cats.put(3, cat3);
+        cats.put(4, cat4);
+        System.out.println(cats);
+        System.out.println();
+
+        System.out.println(cats.get(4));
+        System.out.println();
+    }
+
+    private static void testStack() {
+        Cat cat1 = new Cat("Ab", 2);
+        Cat cat2 = new Cat("Bc", 3);
+        Cat cat3 = new Cat("Cd", 4);
+        Cat cat4 = new Cat("De", 5);
+
+        MyStack<Cat> cats = new MyStack<>();
+        cats.push(cat1);
+        cats.push(cat2);
+        cats.push(cat3);
+        cats.push(cat4);
+        System.out.println(cats);
+        System.out.println();
+
+        System.out.println(cats.peek());
+        System.out.println();
+
+        cats.remove(2);
+        System.out.println(cats);
+        System.out.println();
+
+        cats.pop();
+        System.out.println(cats);
+        System.out.println();
+
+        System.out.println(cats.size());
     }
 
     private static void testQueue() {

@@ -75,17 +75,24 @@ public class MyLinkedList<T> {
         return null;
     }
 
-//TODO for -> while
+
     @Override
     public String toString() {
-        String result = "[";
-        Node tmpNode = headNode;
-        for (int i = 0; i < size; i++) {
+        if(size == 0){
+            return "Empty list";
+        }else{
+            String result = "[";
+            Node tmpNode = headNode;
             result += "{" + tmpNode.value + "}, ";
-            tmpNode = tmpNode.nextNode;
+
+            while (tmpNode.nextNode != null){
+                tmpNode = tmpNode.nextNode;
+                result += "{" + tmpNode.value + "}, ";
+            }
+
+            result += "] \nSize: " + size;
+            return result;
         }
-        result += "] \nSize: " + size;
-        return result;
     }
 
     private class Node {
