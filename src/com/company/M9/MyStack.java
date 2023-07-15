@@ -35,8 +35,7 @@ public class MyStack<T> {
     }
 
     public void clear() {
-        T[] newArrayOfElements = (T[]) new Object[START_SIZE];
-        elements = newArrayOfElements;
+        elements = (T[]) new Object[START_SIZE];
         size = 0;
     }
 
@@ -52,7 +51,7 @@ public class MyStack<T> {
         if (size == 0) {
             throw new IndexOutOfBoundsException("Empty queue");
         }
-        System.arraycopy(elements,  1, elements, 0, size - 1);
+        System.arraycopy(elements,  0, elements, 0, size - 1);
         size--;
     }
 

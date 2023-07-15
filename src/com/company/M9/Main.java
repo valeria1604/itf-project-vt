@@ -16,7 +16,7 @@ public class Main {
         Cat cat3 = new Cat("Cd", 4);
         Cat cat4 = new Cat("De", 5);
 
-        MyHashMap<Cat> cats = new MyHashMap<>();
+        MyHashMap<Integer, Cat> cats = new MyHashMap<>();
         cats.put(1, cat1);
         cats.put(2, cat2);
         cats.put(3, cat3);

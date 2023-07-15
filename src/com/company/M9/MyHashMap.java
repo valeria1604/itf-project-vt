@@ -1,11 +1,11 @@
 package com.company.M9;
 
-public class MyHashMap<T> {
+public class MyHashMap<K, V> {
 
     public MyHashMap.Node currentLastNode;
     private int size;
 
-    public void put(int key, T newValue) {
+    public void put(K key, V newValue) {
 
         MyHashMap.Node currentCheckNode = currentLastNode;
         for (int i = 0; i < size; i++) {
@@ -26,7 +26,7 @@ public class MyHashMap<T> {
         size++;
     }
 
-    public void remove(int key) {
+    public void remove(K key) {
 
         MyHashMap.Node currentCheckNode = currentLastNode;
 
@@ -56,12 +56,12 @@ public class MyHashMap<T> {
         return size;
     }
 
-    public T get(int key) {
+    public V get(K key) {
 
         MyHashMap.Node currentCheckNode = currentLastNode;
         for (int i = 0; i < size; i++) {
             if (key == currentCheckNode.key) {
-                return (T) currentCheckNode.value;
+                return (V) currentCheckNode.value;
             }
             currentCheckNode = currentCheckNode.preNode;
         }
@@ -87,14 +87,14 @@ public class MyHashMap<T> {
         }
     }
 
-    private class Node {
-        private T value;
-        private int key;
-        private MyHashMap.Node preNode;
+    private class Node<K, V> {
+        private K key;
+        private V value;
+        private Node<K, V> preNode;
 
-        private Node(int key, T value, MyHashMap.Node preNode) {
-            this.value = value;
+        private Node(K key, V value, Node<K, V> preNode) {
             this.key = key;
+            this.value = value;
             this.preNode = preNode;
         }
 
