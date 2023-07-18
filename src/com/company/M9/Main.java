@@ -5,7 +5,7 @@ public class Main {
         //testArrayList();
         //testLinkedList();
         //testQueue();
-        //testStack();
+        testStack();
         //testHashMap();
 
     }
@@ -42,18 +42,18 @@ public class Main {
         System.out.println(cats);
         System.out.println();
 
-        System.out.println(cats.peek());
-        System.out.println();
-
-        cats.remove(2);
-        System.out.println(cats);
-        System.out.println();
+//        System.out.println(cats.peek());
+//        System.out.println();
+//
+//        cats.remove(2);
+//        System.out.println(cats);
+//        System.out.println();
 
         cats.pop();
         System.out.println(cats);
         System.out.println();
 
-        System.out.println(cats.size());
+//        System.out.println(cats.size());
     }
 
     private static void testQueue() {

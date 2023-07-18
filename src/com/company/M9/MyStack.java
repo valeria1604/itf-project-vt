@@ -47,12 +47,14 @@ public class MyStack<T> {
         return elements[0];
     }
 
-    public void pop(){
+    public T pop(){
         if (size == 0) {
             throw new IndexOutOfBoundsException("Empty queue");
         }
-        System.arraycopy(elements,  0, elements, 0, size - 1);
+        T deletedElement =  elements[size-1];
+        elements[size-1] = null;
         size--;
+        return  deletedElement;
     }
 
     @Override
