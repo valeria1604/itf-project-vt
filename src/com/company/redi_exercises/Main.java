@@ -17,7 +17,7 @@ public class Main {
 
     private static void fifthExercise(Scanner scanner) {
         int numberWords = scanner.nextInt();
-        ArrayList<String> inputWords = new ArrayList<>();
+        List<String> inputWords = new ArrayList<>();
         for (int i = 0; i <= numberWords; i++) {
             inputWords.add(scanner.nextLine());
         }
@@ -26,10 +26,10 @@ public class Main {
         System.out.println(removeShortWords(inputWords, numberLetters));
     }
 
-    public static ArrayList<String> removeShortWords(ArrayList<String> words, int minLength) {
+    public static ArrayList<String> removeShortWords(List<String> words, int minLength) {
         ArrayList<String> result = new ArrayList<>();
         for (String word : words) {
-            if (!(word.length() < minLength)) {
+            if (word.length() >= minLength) {
                 result.add(word);
             }
         }
@@ -37,27 +37,24 @@ public class Main {
     }
 
     private static void seventhExercise(Scanner scanner) {
-        ArrayList<String> inputWords = new ArrayList<>(Arrays.asList("Qwerty", "Uiop", "Asdfg", "Hjkl", "Zxcvb"));
+        List<String> inputWords = Arrays.asList("Qwerty", "Uiop", "Asdfg", "Hjkl", "Zxcvb");
         System.out.println("Input word: ");
         String inputWord = scanner.nextLine();
+
         System.out.println(findValue(inputWords, inputWord));
     }
 
-    public static int findValue(ArrayList<String> words, String inputWord) {
-
-        if (words.contains(inputWord)) {
-            return words.indexOf(inputWord);
-        }
-        return -1;
+    public static int findValue(List<String> words, String inputWord) {
+        return words.indexOf(inputWord);
     }
 
     private static void eighthExercise() {
-        ArrayList<String> inputWords = new ArrayList<>(Arrays.asList("Qwerty", "Qwerty", "Uiop", "Uiop", "Asdfg", "Asdfg", "Hjkl", "Zxcvb"));
+        List<String> inputWords = Arrays.asList("Qwerty", "Qwerty", "Uiop", "Uiop", "Asdfg", "Asdfg", "Hjkl", "Zxcvb");
         System.out.println(removeDuplicates(inputWords));
     }
 
-    public static ArrayList<String> removeDuplicates(ArrayList<String> words) {
-        ArrayList<String> result = new ArrayList<>();
+    public static List<String> removeDuplicates(List<String> words) {
+        List<String> result = new ArrayList<>();
         for (String word : words) {
             if (!result.contains(word)) {
                 result.add(word);
@@ -67,41 +64,33 @@ public class Main {
     }
 
     private static void twelfthExercise() {
-        ArrayList<Integer> firstList = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        ArrayList<Integer> secondList = new ArrayList<>(Arrays.asList(1, 4, 5, 9));
+        List<Integer> firstList = Arrays.asList(1, 2, 3, 4);
+        List<Integer> secondList = Arrays.asList(1, 4, 5, 9);
 
-        ArrayList<Integer> result = new ArrayList<>();
-
-        result = findDistinctNumbers(firstList, secondList, result);
-        result = findDistinctNumbers(secondList, firstList, result);
-
+        List<Integer> result = findDistinctNumbers(firstList, secondList);
         System.out.println("Output");
         System.out.println(result);
     }
 
-    private static ArrayList<Integer> findDistinctNumbers(ArrayList<Integer> firstList, ArrayList<Integer> secondList, ArrayList<Integer> result) {
-        ArrayList<Integer> tmp = new ArrayList<>();
+    private static List<Integer> findDistinctNumbers(List<Integer> firstList, List<Integer> secondList) {
+        List<Integer> result = new ArrayList<>();
         for (int number : firstList) {
             if (!secondList.contains(number)) {
-                tmp.add(number);
+                result.add(number);
             }
         }
-        tmp.addAll(result);
-        return tmp;
-
+        for (int number : secondList) {
+            if (!firstList.contains(number)) {
+                result.add(number);
+            }
+        }
+        return result;
     }
 
     private static void thirteenthExercise() {
-        ArrayList<String> inputWords = new ArrayList<>();
-        inputWords.add("hello");
-        inputWords.add("world");
-        inputWords.add("hello");
-        inputWords.add("germany");
-        inputWords.add("hello");
-        inputWords.add("berlin");
+        List<String> inputWords = Arrays.asList("hello", "world", "hello", "germany", "hello", "berlin");
 
-        HashSet<String> distinctWords = new HashSet<>();
-        distinctWords.addAll(inputWords);
+        HashSet<String> distinctWords = new HashSet<>(inputWords);
         System.out.println(distinctWords);
 
         int count = 0;
@@ -117,7 +106,7 @@ public class Main {
     }
 
     private static void thirteenthExercisePartTwo(Scanner scanner) {
-        ArrayList<Integer> inputNumbers = new ArrayList<>();
+        List<Integer> inputNumbers = new ArrayList<>();
         int newNumber = 0;
         while (true) {
             newNumber = scanner.nextInt();
@@ -129,31 +118,39 @@ public class Main {
         }
         System.out.println(inputNumbers);
 
-        int firstIndice = scanner.nextInt();
-        int secondIndice = scanner.nextInt();
-        int tmpValue = inputNumbers.get(secondIndice);
-        inputNumbers.set(secondIndice, inputNumbers.get(firstIndice));
-        inputNumbers.set(firstIndice, tmpValue);
+        int firstIndex = scanner.nextInt();
+        int secondIndex = scanner.nextInt();
+        int tmpValue = inputNumbers.get(secondIndex);
+        inputNumbers.set(secondIndex, inputNumbers.get(firstIndex));
+        inputNumbers.set(firstIndex, tmpValue);
 
         System.out.println(inputNumbers);
     }
 
     private static void fourteenthExercise() {
-        ArrayList<Character> firstList = new ArrayList<>(Arrays.asList('a', 'b', 'c', 'd'));
-        ArrayList<Character> secondList = new ArrayList<>(Arrays.asList('x', 'y'));
+        List<Character> firstList = Arrays.asList('a', 'b', 'c', 'd');
+        List<Character> secondList = Arrays.asList('x', 'y');
 
-        ArrayList<Character> resultingList = new ArrayList<>();
+        List<Character> resultingList = new ArrayList<>();
 
-        int maxLength = Integer.max(firstList.size(), secondList.size());
+        int minLength = Integer.min(firstList.size(), secondList.size());
 
-        for (int i = 0; i < maxLength; i++) {
-            if (i < firstList.size()) {
+        for (int i = 0; i < minLength; i++) {
+            resultingList.add(firstList.get(i));
+            resultingList.add(secondList.get(i));
+        }
+
+        if (firstList.size() > minLength) {
+            for (int i = minLength; i < firstList.size(); i++) {
                 resultingList.add(firstList.get(i));
             }
-            if (i < secondList.size()) {
+        } else {
+            for (int i = minLength; i < secondList.size(); i++) {
                 resultingList.add(secondList.get(i));
             }
         }
+
         System.out.println(resultingList);
     }
+
 }
