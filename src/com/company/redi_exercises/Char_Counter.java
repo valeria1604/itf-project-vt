@@ -12,8 +12,7 @@ public class Char_Counter {
             if (!repeatsChar.containsKey(word.charAt(i))) {
                 repeatsChar.put(word.charAt(i), 1);
             } else {
-                int newValue = repeatsChar.get(word.charAt(i)) + 1;
-                repeatsChar.replace(word.charAt(i), newValue);
+                repeatsChar.replace(word.charAt(i), repeatsChar.get(word.charAt(i)) + 1);
             }
         }
         System.out.println(repeatsChar);
