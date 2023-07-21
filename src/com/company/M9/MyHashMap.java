@@ -1,14 +1,12 @@
 package com.company.M9;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class MyHashMap<K, V> {
-    private class Element<K, V> {
+    private class Node<K, V> {
         private K key;
         private V value;
 
-        private Element(K key, V value) {
+        private Node(K key, V value) {
             this.key = key;
             this.value = value;
         }
@@ -30,82 +28,99 @@ public class MyHashMap<K, V> {
         }
     }
 
-    private ArrayList<LinkedList<Element<K, V>>> buckets;
-    private int numBuckets;
+    private Node<K, V>[] buckets;
     private int size;
 
     public MyHashMap() {
-        numBuckets = 10;
         size = 0;
-        buckets = new ArrayList<>(numBuckets);
-
-        for (int i = 0; i < numBuckets; i++) {
-            buckets.add(new LinkedList<>());
-        }
+        buckets = (Node<K, V>[]) new Node[10];
     }
 
-    private int getHash(K key){
+    private int getHash(K key) {
         int hash = key.hashCode();
-        return hash % numBuckets;
+        return Math.abs(hash) % buckets.length;
     }
 
     public void put(K key, V value) {
         int hash = getHash(key);
-        LinkedList<Element<K, V>> bucket = buckets.get(hash);
-
-        for (Element<K, V> element : bucket) {
-            if (element.getKey().equals(key)) {
-                element.value = value;
+        while (buckets[hash] != null) {
+            if(buckets[hash].getKey().equals(key)){
+                buckets[hash].value = value;
                 return;
             }
+            hash = (hash + 1) % buckets.length;
         }
+
+        buckets[hash] = new Node<>(key, value);
         size++;
-        bucket.add(new Element<>(key, value));
+
+        if ((1.0 * size) / buckets.length >= 0.7) {
+            resizeArray(buckets.length * 2);
+        }
     }
 
     public V get(K key) {
         int hash = getHash(key);
-        LinkedList<Element<K, V>> bucket = buckets.get(hash);
-        for (Element<K, V> element : bucket) {
-            if (element.getKey().equals(key)) {
-                return element.getValue();
+
+        while (buckets[hash] != null) {
+            if(buckets[hash].getKey().equals(key)){
+                return buckets[hash].getValue();
             }
+            hash = (hash + 1) % buckets.length;
         }
+
         return null;
     }
 
-    public void remove(K key) {
+    public V remove(K key) {
         int hash = getHash(key);
-        LinkedList<Element<K, V>> bucket = buckets.get(hash);
-        for (Element<K, V> element : bucket) {
-            if (element.getKey().equals(key)) {
-                bucket.remove(element);
+
+        while (buckets[hash] != null) {
+            if(buckets[hash].getKey().equals(key)){
+                V value =  buckets[hash].getValue();
+                buckets[hash] = null;
                 size--;
+
+                if ((1.0 * size) / buckets.length >= 0.7) {
+                    resizeArray(buckets.length * 2);
+                }
+
+                return value;
             }
-            break;
+            hash = (hash + 1) % buckets.length;
         }
-         throw new IndexOutOfBoundsException("There is no element with that key");
+        return null;
+
     }
 
     public void clear() {
-        numBuckets = 10;
         size = 0;
-        buckets = new ArrayList<>(numBuckets);
-
-        for (int i = 0; i < numBuckets; i++) {
-            buckets.add(new LinkedList<>());
-        }
+        buckets = (Node<K, V>[]) new Node[10];
     }
 
     public int size() {
         return size;
     }
 
+    private void resizeArray(int newSize) {
+        Node<K, V>[] newBuckets = (Node<K, V>[]) new Node[newSize];
+
+        for (Node<K, V> node : buckets) {
+            if (node != null) {
+                int hash = getHash(node.getKey());
+                while (newBuckets[hash] != null) {
+                    hash = (hash + 1) % newBuckets.length;
+                }
+                newBuckets[hash] = node;
+            }
+        }
+        buckets = newBuckets;
+    }
+
     @Override
     public String toString() {
         return "MyHashMap{" +
-                "buckets=" + buckets +
-                ", numBuckets=" + numBuckets +
+                "buckets=" + buckets.toString() +
                 ", size=" + size +
                 '}';
     }
