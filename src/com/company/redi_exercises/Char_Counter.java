@@ -9,11 +9,8 @@ public class Char_Counter {
         Map<Character, Integer> repeatsChar = new HashMap<>();
 
         for (int i = 0; i < word.length(); i++) {
-            if (!repeatsChar.containsKey(word.charAt(i))) {
-                repeatsChar.put(word.charAt(i), 1);
-            } else {
-                repeatsChar.replace(word.charAt(i), repeatsChar.get(word.charAt(i)) + 1);
-            }
+            int currentCount = repeatsChar.getOrDefault(word.charAt(i), 0);
+            repeatsChar.put(word.charAt(i), currentCount + 1);
         }
         System.out.println(repeatsChar);
     }
