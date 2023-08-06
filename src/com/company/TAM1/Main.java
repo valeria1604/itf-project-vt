@@ -3,25 +3,23 @@ package com.company.TAM1;
 import java.util.Arrays;
 
 public class Main {
-
     public static final String FILTER_BY_CHARACTER = "w";
 
     public static void main(String[] args) {
-        String fromFileName =  "test.txt";
-        StringBuilder text = new StringBuilder();
+        String fromFileName = "test.txt";
+        StringBuilder builder = new StringBuilder();
         String line;
-
-        try(
+        try (
                 BufferedReader reader = new BufferedReader(new FileReader(fromFileName));
         ) {
-            while ((line = reader.readLine()) != null){
-                text.append(line);
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
             }
 
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        String[] result = getSentenceArray(String.valueOf(text));
+        String[] result = getSentenceArray(builder.toString());
         Arrays.sort(result);
         System.out.println(Arrays.asList(result));
     }
