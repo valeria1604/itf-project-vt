@@ -4,23 +4,35 @@ import java.util.Arrays;
 
 public class Main {
 
-    public static final String SPECIFIED_CHARACTER = "w";
+    public static final String FILTER_BY_CHARACTER = "w";
 
     public static void main(String[] args) {
-        String sentence1 = "Width world Wide web";
-        String sentence2 = "WWW? Four-bedroom farmhouse in the countryside. Wave! All of the four double bedrooms are en suite.";
+        String fromFileName =  "test.txt";
+        StringBuilder text = new StringBuilder();
+        String line;
 
-        System.out.println(Arrays.asList(getSentenceArray(sentence1)));
-        System.out.println(Arrays.asList(getSentenceArray(sentence2)));
+        try(
+                BufferedReader reader = new BufferedReader(new FileReader(fromFileName));
+        ) {
+            while ((line = reader.readLine()) != null){
+                text.append(line);
+            }
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        String[] result = getSentenceArray(String.valueOf(text));
+        Arrays.sort(result);
+        System.out.println(Arrays.asList(result));
     }
 
     private static String[] getSentenceArray(String sentence) {
         sentence = sentence.toLowerCase();
-        String[] splintedSentence = sentence.split("\\W+");
+        String[] splitedSentence = sentence.split("\\W+");
 
         int wordCount = 0;
-        for (String word : splintedSentence) {
-            if (word.startsWith(SPECIFIED_CHARACTER)) {
+        for (String word : splitedSentence) {
+            if (word.startsWith(FILTER_BY_CHARACTER)) {
                 wordCount++;
             }
         }
@@ -28,8 +40,8 @@ public class Main {
         String[] finalResult = new String[wordCount];
         int index = 0;
 
-        for (String word : splintedSentence) {
-            if (word.startsWith(SPECIFIED_CHARACTER)) {
+        for (String word : splitedSentence) {
+            if (word.startsWith(FILTER_BY_CHARACTER)) {
                 finalResult[index] = word;
                 index++;
             }
