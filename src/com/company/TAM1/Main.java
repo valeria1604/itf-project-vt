@@ -7,6 +7,15 @@ public class Main {
 
     public static void main(String[] args) {
         String fromFileName = "test.txt";
+        StringBuilder builder = readFromFile(fromFileName);
+
+
+        String[] result = getSentenceArray(builder.toString());
+        Arrays.sort(result);
+        System.out.println(Arrays.asList(result));
+    }
+
+    private static StringBuilder readFromFile(String fromFileName) {
         StringBuilder builder = new StringBuilder();
         String line;
         try (
@@ -19,9 +28,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String[] result = getSentenceArray(builder.toString());
-        Arrays.sort(result);
-        System.out.println(Arrays.asList(result));
+        return builder.toString();
     }
 
     private static String[] getSentenceArray(String sentence) {
