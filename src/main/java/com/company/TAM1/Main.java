@@ -9,7 +9,7 @@ public class Main {
     public static final String FILTER_BY_CHARACTER = "w";
 
     public static void main(String[] args) {
-        String fromFileName = "test.txt";
+        String fromFileName = "src/main/resources/test.txt";
         String stringFromFile = readFromFile(fromFileName);
 
         String[] filteredWords = getFilteredWords(stringFromFile, FILTER_BY_CHARACTER);
