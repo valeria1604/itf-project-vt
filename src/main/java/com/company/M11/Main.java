@@ -2,43 +2,45 @@ package com.company.M11;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-//        task1();
-//        task2();
-//        task3();
+//        System.out.println(task1());
+//        System.out.println(task2());
+//        System.out.println(task3());
 //        task4();
 //        task5();
     }
 
-    private static void task1() {
+    private static String task1() {
         List<String> names = Arrays.asList("John", "Bill", "Anthon", "Alex");
 
-        IntStream.range(0, names.size())
+        return IntStream.range(0, names.size())
                 .filter(index -> index % 2 != 0)
-                .forEachOrdered(index -> System.out.println(index + ". " + names.get(index)));
+                .mapToObj(index -> index + ". " + names.get(index))
+                .collect(Collectors.joining(", "));
     }
 
-    private static void task2() {
+    private static List<String> task2() {
         List<String> names = Arrays.asList("John", "Bill", "Anthon", "Alex");
-        names.stream()
+        return names.stream()
                 .sorted()
                 .map(String::toUpperCase)
-                .forEachOrdered(System.out::println);
+                .collect(Collectors.toList());
     }
 
-    private static void task3() {
+    private static String task3() {
         String[] inputArray = {"1, 2, 0", "4, 5"};
-        int[] numbers = Arrays.stream(inputArray)
+
+        return Arrays.stream(inputArray)
                 .flatMapToInt(s -> Arrays.stream(s.split(", "))
                         .mapToInt(Integer::parseInt))
-                .toArray();
-        Arrays.stream(numbers).
-                sorted()
-                .forEach(number -> System.out.print(number + ", "));
+                .sorted()
+                .mapToObj(String::valueOf) // Convert back to String
+                .collect(Collectors.joining(", "));
     }
 
     private static void task4() {
@@ -49,9 +51,10 @@ public class Main {
                 .forEach(System.out::println);
     }
 
-    private static Stream<Long> generateStream(long seed, long a, long c, long m, int limit) {
+    private static List<Long> generateStream(long seed, long a, long c, long m, int limit) {
         return Stream.iterate(seed, x -> (a * x + c) % m)
-                .limit(limit);
+                .limit(limit)
+                .collect(Collectors.toList());
     }
 
     private static void task5() {
